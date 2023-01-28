@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Man</title>
 </head>
-<body>
-    
+
+<body class="flex-column min-100-vh">
+    <header class="hero">
+        <h1 class="app-title"><i class="fab fa-github"></i> The Weather Man!</h1>
+    </header>
+
+
+    <main class="flex-row justify-space-between">
+        <div class="col-12 col-md-4">
+
+
+            <div class="card">
+                <h3 class="card-header text-uppercase">Search for a City:</h3>
+                <form id="weather-form" class="card-body">
+                    <label class="form-label" for="example">example: Toronto</label>
+                    <input name="example" id="example" type="text" autofocus="true" class="form-input" />
+                    <button type="submit" class="btn">Search</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <div id="city-buttons" class="card-body">
+                    <button data-language="barrie" class="btn">Barrie</button>
+                    <button data-language="orillia" class="btn">Orillia</button>
+                    <button data-language="gravenhurst" class="btn">Gravenhurst</button>
+                    <button data-language="bracebridge" class="btn">Bracebridge</button>
+                    <button data-language="huntsville" class="btn">Huntsville</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-8">
+            <h2 class="subtitle">Showing Results for: <span id="show-search-term"></span></h2>
+            <div id="show-results" class="list-group"></div>
+        </div>
+    </main>
+
+
+    <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
