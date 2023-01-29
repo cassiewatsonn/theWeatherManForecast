@@ -1,7 +1,10 @@
 ///The Weather Man Forecast Website///
 const APIKey ="4a416f29621f235e85749268a29c1806";
 
-window.addEventListener('load', () => {}); 
+let newCity  = document.querySelector("#cityresults"); 
+
+
+newCity.addEventListener('load', () => {}); 
     let long = 0; 
     let lat = 0; 
 
@@ -12,23 +15,65 @@ lat = position.coords.latitude;
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${APIKey}&units=metric`
 console.log(apiUrl); 
 
-fetch(apiUrl).then((response) => {
+fetch(apiUrl)
+.then(function (response) {
     return response.json(); 
 })
-.then(function(data){
-    console.log(data);
+.then(function(current){
+    console.log(current);
 })
-    });
+});
 }
 
-// //These querySelectors will target the first id in the HTML//
-// const weatherForm = document.querySelector('#weather-form');
-// const cityButtons = document.querySelector('#city-buttons');
-// const cityInput = document.querySelector('#example');
-// const showResults = document.querySelector('#show-results');
-// const searchTerm = document.querySelector('#show-search-term');
+//These querySelectors will target the first id in the HTML//
+const weatherForm = document.querySelector('#weather-form');
+const cityButtons = document.querySelector('#city-buttons');
+const cityInput = document.querySelector('#example');
+const showResults = document.querySelector('#show-results');
+const searchTerm = document.querySelector('#show-search-term');
 
-// let newCity  = document.querySelector("#cityresults");   
+var buttonClickHandler = function (event) {
+  var language = event.target.getAttribute('data-language');
+
+  if (language) {
+    fiveDayURL(language);
+
+    cityButtons.textContent = '';
+  }
+};
+
+let fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + newCity.lat + "&lon=" + newCity.lon + "&appid=" + APIKey + "&units=metric";
+console.log(fiveDayURL); 
+
+fetch(fiveDayURL)
+.then(function (response){
+    return response.json();
+})
+.then(function (fiveday){
+    console.log(fiveday);
+})
+
+
+//     if(response.ok){
+//         response.json().then(function (displayWeather){
+//             console.log(displayWeather); 
+//         })
+//     }
+//     return response.json();
+// })
+   
+
+
+let fiveDayForecast = function (cityname){
+
+}
+
+let getWeatherInfo = function (city) {
+    let getCityAPI = 'https://api.openweathermap.org/geo/1.0/direct?q=orillia,6094325&limit=8&appid=' + APIKey; 
+}
+
+
+  
 // let temp = document.querySelector("temp"); 
 // let wind = document.querySelector("wind"); 
 // let humidity = document.querySelector("humidity");         
