@@ -17,13 +17,14 @@
     <title>The Weather Man</title>
 </head>
 
-<header class="weather-dash-header">
-    <div class="container text-center">
-        <h1>The Weather Man!</h1>
-    </div>
-</header>
+<body class="body">
+    <header class="header">
+        <div class="container text-center">
+            <h1>The Weather Man!</h1>
+        </div>
+    </header>
 
-<body>
+
     <main class="flex-row justify-space-between">
 
 
@@ -32,38 +33,27 @@
                 <aside class="col-lg-3">
                     <h3>Search for a City:</h3>
                     <form class="card-body" id="city-Search">
-                        <label placeholder="example: Toronto" type="text" class="form-label" for="example"></label>
-                        <input name="search" id="city-input" type="text" class="form-control-sm-2" />
+                        <input type="text" class="form-input" id="city-input" name="city-input" />
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                 </aside>
             </div>
         </section>
 
-        <div class="card">
-            <div id="city-buttons" class="card-body">
-                <button data-language="barrie" class="btn btn-secondary">Barrie</button>
-                <button data-language="orillia" class="btn btn-secondary">Orillia</button>
-                <button data-language="gravenhurst" class="btn btn-secondary">Gravenhurst</button>
-                <button data-language="bracebridge" class="btn btn-secondary">Bracebridge</button>
-                <button data-language="huntsville" class="btn btn-secondary">Huntsville</button>
-            </div>
-        </div>
-        <section class="display-weather">
+        <section class='col-lg-9' id="display-weather">
             <div class="wrapper">
-                <h3 id="cityresults"></h3> 
+                <h3 id="city"></h3> 
+                <h5 id="date"></h5>
                 <p id="temp"></p>
                 <p id="wind"></p>
                 <p id="humidity"></p>
             </div>
-
-
         </section>
 
 
         
 
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8" id="five-day">
             <h2 class="subtitle">Your 5 Day Forecast: <span id="show-search-term"></span></h2>
             <div id="show-results" class="list-group"></div>
         </div>
