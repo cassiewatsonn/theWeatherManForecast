@@ -4,21 +4,23 @@
 let citySearchForm = $('#city-search');
 let cityInputHere = $('#city-input');
 
-const city = document.querySelector('#city');
-const date = document.querySelector('#date');
-const temp = document.querySelector('#temp');
-const humidity = document.querySelector('#humidity');
-const wind = document.querySelector('#wind');
+// const city = document.querySelector('#city');
+// const date = document.querySelector('#date');
+// const temp = document.querySelector('#temp');
+// const humidity = document.querySelector('#humidity');
+// const wind = document.querySelector('#wind');
 
-let APIKey ="4a416f29621f235e85749268a29c1806";
+const APIKey ="4a416f29621f235e85749268a29c1806";
+let city; 
+let currentDay = "";
+let lat;
+let lon;
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
 // API call Open Weather
 // let dayForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInputHere + "&APPID=" + APIKey;
 
 
-let currentDay = "";
-let lat;
-let lon;
 
 
 
@@ -49,11 +51,16 @@ $("#city-form").on("submit", function (event) {
 
 function currentWeather() {
     // API call to get current weather conditions
-    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputHere + "&appid=" + APIKey;
+    // let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputHere + "&appid=" + APIKey;
     fetch(queryURL)
-        .then(function (res) {
-            return res.json();
-        })
+        .then(function (response) {
+            if (response.ok){
+                console.log(response); 
+                return response.json().then(function (data){
+                console.log(data);
+                })
+            };
+            })
         .then(function (res) {
             console.log(res)
             lat = res.coord.lat;
