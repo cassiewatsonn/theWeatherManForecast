@@ -4,6 +4,9 @@
 let citySearchForm = $('#city-search');
 let cityInputHere = $('#city-input');
 
+//troubleshooting link...
+const linkForm = document.getElementsByClassName("form-input");
+
 const city = document.querySelector('#city');
 const date = document.querySelector('#date');
 const temp = document.querySelector('#temp');
@@ -41,17 +44,21 @@ $("#city-search").on("submit", function (event) {
     else {
         currentWeather(cityInputHere);  
     }
-        // get name of city searched
-        cityInputHere = $("#city-input").val(); 
-        console.log(cityInputHere);  
+
 });
 
 currentWeather(cityInputHere); 
 
 function currentWeather() {
-    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputHere + "&limit=1&units=metric&appid=" + APIKey;
+    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + Element.form-input + "&limit=1&units=metric&appid=" + APIKey; 
     // API call to get current weather conditions
     // let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputHere + "&appid=" + APIKey;
+    
+            // get name of city searched
+            cityInputHere = $("#city-input").val(); 
+            console.log(cityInputHere);  
+    
+    
     fetch(queryURL)
         .then(function (response) {
             if (response.ok){
