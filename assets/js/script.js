@@ -4,18 +4,17 @@
 let citySearchForm = $('#city-search');
 let cityInputHere = $('#city-input');
 
-// const city = document.querySelector('#city');
-// const date = document.querySelector('#date');
-// const temp = document.querySelector('#temp');
-// const humidity = document.querySelector('#humidity');
-// const wind = document.querySelector('#wind');
+const city = document.querySelector('#city');
+const date = document.querySelector('#date');
+const temp = document.querySelector('#temp');
+const humidity = document.querySelector('#humidity');
+const wind = document.querySelector('#wind');
 
 const APIKey ="4a416f29621f235e85749268a29c1806";
-let city; 
 let currentDay = "";
 let lat;
 let lon;
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+
 
 // API call Open Weather
 // let dayForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInputHere + "&APPID=" + APIKey;
@@ -25,7 +24,7 @@ var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&ap
 
 
 // To save the user's inputed city name for the currentWeather fetch
-$("#city-form").on("submit", function (event) {  
+$("#city-search").on("submit", function (event) {  
     event.preventDefault();
 
     // citySearchForm.addEventListener('submit', function(event) { //// capture the data from the form
@@ -44,32 +43,58 @@ $("#city-form").on("submit", function (event) {
         event.preventDefault();
     }
     else {
-        currentWeather(cityInputHere);  //need to build these functions
-        // fiveDayForecast(cityInputHere);  //need to build these functions 
+        currentWeather(cityInputHere);  
     }
 });
 
 function currentWeather() {
+    let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
     // API call to get current weather conditions
     // let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputHere + "&appid=" + APIKey;
     fetch(queryURL)
         .then(function (response) {
             if (response.ok){
-                console.log(response); 
-                return response.json().then(function (data){
-                console.log(data);
-                })
-            };
-            })
-        .then(function (res) {
-            console.log(res)
+                return response.json();
+    }})
+        .then(function (response) {
+            console.log(response)
             lat = res.coord.lat;
             lon = res.coord.lon;
             console.log("lat", lat)
             console.log("lon", lon)
-        })
 
+            fiveDayForecast(); 
+        })
 };
+
+
+
+
+function fiveDayForecast() {
+    console.log(lat,lon);
+    let forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&limit=1&units=metric&appid=" + APIKey;
+    fetch(forecastURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            console.log(response);
+        });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
