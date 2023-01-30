@@ -25,7 +25,7 @@ let lon;
 
 
 // To save the user's inputed city name for the currentWeather fetch
-$("#city-search").on("submit", function (event) {  
+$("#city-Search").on("submit", function (event) {
     event.preventDefault();
 
             // get name of city searched
