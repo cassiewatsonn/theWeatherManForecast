@@ -53,7 +53,7 @@ currentWeather(linkForm);
 
 function currentWeather() {
 
-    var inputBox = document.getElementById("#city-input");
+    var inputBox = document.getElementById("city-input");
     var city = inputBox.value; 
 
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&limit=1&units=metric&appid=" + APIKey; 
