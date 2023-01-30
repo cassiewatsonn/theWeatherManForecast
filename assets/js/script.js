@@ -120,9 +120,26 @@ function forecastFunction() {
         })
         /// go through list of responses in the array
         .then(function (response) {
+            console.log('line 122')
             for (var i = 4; i < response.list.length; i += 8) {
-                console.log('line 123')
                 console.log(response.list[i].dt_txt);
+
+                photoIcon = response.list[i].weather[0].icon;
+                    photoIconURL = "http://openweathermap.org/img/w/" + photoIcon + ".png";
+                    console.log("icon", photoIconURL);
+
+                    outsideTemp = response.list[i].main.temp;
+                    console.log("temp", outsideTemp);
+
+                    outHumidity = response.list[i].main.humidity;
+                    console.log("humidity", outHumidity);
+
+                    outWind = response.list[i].wind.speed;
+                    console.log("wind", outWind);
+
+                    outWindKM = Math.floor((outWind) * 3.6);
+                    console.log("wind km", outWindKM);
+
             }
         });
 }          
@@ -136,7 +153,8 @@ $(".save").on("click", function(){
     // $(this).siblings('input')  <== the input element in html
     // $(this).parent() <== form element which is the parent element of input.
     let inputValue = $(this).siblings("input").val();
-    let formId = $(this).parent().attr('section');
+    // let formId = $(this).parent().attr('section');
+    let formId = "cities";
     ///add text value to the local storage///
     localStorage.setItem(formId, inputValue);
     localStorage.setItem("cities", inputValue); 
@@ -153,7 +171,18 @@ $(".save").on("click", function(){
     }
     // arrayOfCities.push(inputValue)
     localStorage.setItem("cities", JSON.stringify(arrayOfCities))
-  })
+    
+
+    //creating an array... to add inputValue in to save to local storage..
+    // trying to fix the overide storage issue - not working
+    let arrayOfStorage = []
+        arrayOfStorage.push(inputValue); 
+        localStorage.setItem("cities", JSON.stringify(arrayOfStorage))
+    }
+    // arrayOfStorage = JSON.parse(localStorage.getItem("input"))
+    // arrayOfStorage.push(inputValue); 
+    // localStorage.setItem(arrayOfStorage, JSON.stringify(arrayOfStorage)); 
+  )
 
 
 
