@@ -131,7 +131,7 @@ function forecastFunction() {
 
 
 ///Working on saving to local storage// 
-$(".saveBtn").on("click", function(){
+$(".save").on("click", function(){
     // $(this) <== the button element clicked.
     // $(this).siblings('input')  <== the input element in html
     // $(this).parent() <== form element which is the parent element of input.
@@ -139,6 +139,19 @@ $(".saveBtn").on("click", function(){
     let formId = $(this).parent().attr('section');
     ///add text value to the local storage///
     localStorage.setItem(formId, inputValue);
+    localStorage.setItem("cities", inputValue); 
+
+    // if there is a key in the localstorage called cities, then let the arrayofcities equal the array stored from local storage. 
+    //if it doesnt exist, array of cities should be an empty array
+    let arrayOfCities = []
+    if (localStorage.getItem("cities")) {
+       arrayOfCities = JSON.parse(localStorage.getItem("cities"))
+       arrayOfCities.push(inputValue)
+    } else {
+       arrayOfCities = []
+    }
+    // arrayOfCities.push(inputValue)
+    localStorage.setItem("cities", JSON.stringify(arrayOfCities))
   })
 
 
