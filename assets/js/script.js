@@ -28,6 +28,10 @@ let lon;
 $("#city-search").on("submit", function (event) {  
     event.preventDefault();
 
+            // get name of city searched
+            linkForm = $("#city-input").val(); 
+            console.log(linkForm); 
+
     // citySearchForm.addEventListener('submit', function(event) { //// capture the data from the form
     //     event.preventDefault();	
     //     let linkForm = document.ElementById('city-input').value;
@@ -42,13 +46,10 @@ $("#city-search").on("submit", function (event) {
     else {
         currentWeather(linkForm);  
     }
-            // get name of city searched
-            linkForm = $("#city-input").val(); 
-            console.log(linkForm); 
 
 });
 
-currentWeather(linkForm); 
+// currentWeather(linkForm); 
 
 
 function currentWeather() {
