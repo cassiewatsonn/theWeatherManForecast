@@ -97,8 +97,6 @@ function currentWeather() {
 };
 
 
-
-
 function fiveDayForecast() {
     console.log(lat,lon);
     let forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&limit=1&units=metric&appid=" + APIKey;
@@ -115,13 +113,15 @@ function fiveDayForecast() {
 
 function forecastFunction() {
     let forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&limit=1&units=metric&appid=" + APIKey;
+    ///request data from openweather and returns data in json
     fetch(forecastURL)
         .then(function (response) {
             return response.json();
         })
+        /// go through list of responses in the array
         .then(function (response) {
             for (var i = 4; i < response.list.length; i += 8) {
-                console.log('hello')
+                console.log('line 123')
                 console.log(response.list[i].dt_txt);
             }
         });
@@ -129,6 +129,17 @@ function forecastFunction() {
     
   
 
+
+///Working on saving to local storage// 
+$(".saveBtn").on("click", function(){
+    // $(this) <== the button element clicked.
+    // $(this).siblings('input')  <== the input element in html
+    // $(this).parent() <== form element which is the parent element of input.
+    let inputValue = $(this).siblings("input").val();
+    let formId = $(this).parent().attr('section');
+    ///add text value to the local storage///
+    localStorage.setItem(formId, inputValue);
+  })
 
 
 
