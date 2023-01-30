@@ -141,7 +141,8 @@ $(".save").on("click", function(){
     localStorage.setItem(formId, inputValue);
     localStorage.setItem("cities", inputValue); 
 
-    // if there is a key in the localstorage called cities, then let the arrayofcities equal the array stored from local storage. 
+    // if there is a key in the localstorage called cities, 
+    //then let the arrayofcities equal the array stored from local storage. 
     //if it doesnt exist, array of cities should be an empty array
     let arrayOfCities = []
     if (localStorage.getItem("cities")) {
