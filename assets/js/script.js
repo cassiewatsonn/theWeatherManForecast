@@ -4,8 +4,9 @@
 let citySearchForm = $('#city-search');
 let cityInputHere = $('#city-input');
 
-//troubleshooting link...
-const linkForm = document.getElementsByClassName("form-input");
+
+//troubleshooting link problem...<- issue is with the input section of it 
+var linkForm = document.getElementsByClassName("form-input");
 
 const city = document.querySelector('#city');
 const date = document.querySelector('#date');
@@ -20,10 +21,7 @@ let lon;
 
 
 // API call Open Weather
-// let dayForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInputHere + "&APPID=" + APIKey;
-
-
-
+// let dayForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + linkForm + "&APPID=" + APIKey; 
 
 
 // To save the user's inputed city name for the currentWeather fetch
@@ -32,32 +30,41 @@ $("#city-search").on("submit", function (event) {
 
     // citySearchForm.addEventListener('submit', function(event) { //// capture the data from the form
     //     event.preventDefault();	
-    //     let cityInputHere = document.ElementById('city-input').value;
-    //     currentWeather(cityInputHere);
+    //     let linkForm = document.ElementById('city-input').value;
+    //     currentWeather(linkForm);
     //     });
 
-    if (cityInputHere === "" || cityInputHere == null) {  //stop from putting nothing in field
+    if (linkForm === "" || linkForm == null) {  //stop from putting nothing in field
         //send alert to enter a city to continue
         alert("Please enter a city name to recieve your weather");
         event.preventDefault();
     }
     else {
-        currentWeather(cityInputHere);  
+        currentWeather(linkForm);  
     }
+            // get name of city searched
+            linkForm = $("#city-input").val(); 
+            console.log(linkForm); 
 
 });
 
-currentWeather(cityInputHere); 
+currentWeather(linkForm); 
+
+
 
 function currentWeather() {
+
+    
+
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + Element.form-input + "&limit=1&units=metric&appid=" + APIKey; 
+    /// used Element.form-input to grab class of input from html as I was having issues with using linkForm///
+    
     // API call to get current weather conditions
-    // let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputHere + "&appid=" + APIKey;
-    
-            // get name of city searched
-            cityInputHere = $("#city-input").val(); 
-            console.log(cityInputHere);  
-    
+    // let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + linkForm + "&appid=" + APIKey;
+
+    // get name of city searched
+        linkForm = $("form-input").val(); 
+        console.log(linkForm); 
     
     fetch(queryURL)
         .then(function (response) {
@@ -73,6 +80,7 @@ function currentWeather() {
 
             fiveDayForecast(); 
         })
+
 };
 
 
