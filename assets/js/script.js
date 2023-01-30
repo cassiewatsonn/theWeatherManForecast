@@ -152,33 +152,38 @@ $(".save").on("click", function(){
     // $(this) <== the button element clicked.
     // $(this).siblings('input')  <== the input element in html
     // $(this).parent() <== form element which is the parent element of input.
-    let inputValue = $(this).siblings("input").val();
-    // let formId = $(this).parent().attr('section');
-    let formId = "cities";
-    ///add text value to the local storage///
-    localStorage.setItem(formId, inputValue);
-    localStorage.setItem("cities", inputValue); 
+    // let inputValue = $(this).siblings("input").val();
+    // // let formId = $(this).parent().attr('section');
+    // let formId = "cities";
+    // ///add text value to the local storage///
+    // localStorage.setItem(formId, inputValue);
+    // localStorage.setItem("cities", inputValue); 
 
+    let arrayOfCities = JSON.parse(localStorage.getItem("cities")) || []
+let inputValue = $(this).siblings("input").val();
+arrayOfCities.push(inputValue)
+localStorage.setItem("cities", JSON.stringify(arrayOfCities))
+}
     // if there is a key in the localstorage called cities, 
     //then let the arrayofcities equal the array stored from local storage. 
     //if it doesnt exist, array of cities should be an empty array
-    let arrayOfCities = []
-    if (localStorage.getItem("cities")) {
-       arrayOfCities = JSON.parse(localStorage.getItem("cities"))
-       arrayOfCities.push(inputValue)
-    } else {
-       arrayOfCities = []
-    }
-    // arrayOfCities.push(inputValue)
-    localStorage.setItem("cities", JSON.stringify(arrayOfCities))
+    // let arrayOfCities = []
+    // if (localStorage.getItem("cities")) {
+    //    arrayOfCities = JSON.parse(localStorage.getItem("cities"))
+    //    arrayOfCities.push(inputValue)
+    // } else {
+    //    arrayOfCities = []
+    // }
+    // // arrayOfCities.push(inputValue)
+    // localStorage.setItem("cities", JSON.stringify(arrayOfCities))
     
 
     //creating an array... to add inputValue in to save to local storage..
     // trying to fix the overide storage issue - not working
-    let arrayOfStorage = []
-        arrayOfStorage.push(inputValue); 
-        localStorage.setItem("cities", JSON.stringify(arrayOfStorage))
-    }
+    // let arrayOfStorage = []
+    //     arrayOfStorage.push(inputValue); 
+    //     localStorage.setItem("cities", JSON.stringify(arrayOfStorage))
+    // }
     // arrayOfStorage = JSON.parse(localStorage.getItem("input"))
     // arrayOfStorage.push(inputValue); 
     // localStorage.setItem(arrayOfStorage, JSON.stringify(arrayOfStorage)); 
