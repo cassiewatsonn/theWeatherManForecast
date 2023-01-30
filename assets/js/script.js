@@ -108,15 +108,24 @@ function fiveDayForecast() {
         })
         .then(function (response) {
             console.log(response);
-
-
-
-
+            forecastFunction();
         });
     
 }
 
-          
+function forecastFunction() {
+    let forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&limit=1&units=metric&appid=" + APIKey;
+    fetch(forecastURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            for (var i = 4; i < response.list.length; i += 8) {
+                console.log('hello')
+                console.log(response.list[i].dt_txt);
+            }
+        });
+}          
     
   
 
