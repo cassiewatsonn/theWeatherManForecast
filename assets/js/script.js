@@ -18,6 +18,10 @@ let currentDay = "";
 let lat;
 let lon;
 
+let cityForecastEl = $('#city-forecast');
+let displayForecastEl = $('#display-forecast');
+let forecastCardEl = $("#forecast-card");
+
 // To save the user's inputed city name for the currentWeather fetch
 $("#city-Search").on("submit", function (event) {
     event.preventDefault();
@@ -32,6 +36,7 @@ $("#city-Search").on("submit", function (event) {
         event.preventDefault();
     }
     else {
+        $("#forecast-card").empty();
         currentWeather(linkForm);  
     }
 });
@@ -121,7 +126,7 @@ function forecastFunction() {
         /// go through list of responses in the array
         .then(function (response) {
             console.log('line 122')
-            for (var i = 4; i < response.list.length; i += 8) {
+            for (var i = 0; i < response.list.length; i += 8) {
                 console.log(response.list[i].dt_txt);
 
                 photoIcon = response.list[i].weather[0].icon;
@@ -140,9 +145,39 @@ function forecastFunction() {
                     outWindKM = Math.floor((outWind) * 3.6);
                     console.log("wind km", outWindKM);
 
+                //To create elements for the 5day forecast cards
+                let fiveDay = $("<div class='card text-white bg-primary'>")
+                let fiveTemp = $("<p>");
+                let fiveHum = $("<p>");
+                let fiveForeWind = $("<p>");
+                let fiveImg = $("<img>");
+                let fiveDate = $("<h6>");
+
+                //To output the variables obtained from the loop into each dynamically created card
+                fiveTemp.text("Temp: " + outsideTemp + " °С")
+                fiveHum.text("Humidity: " + outHumidity + "%")
+                fiveForeWind.text("Wind Speed: " + outWindKM + " km/hr");
+                fiveDate.text("Date: " + response.list[i].dt_txt)
+                let today = dayjs();
+                $('#date').text(today.format('MMM D, YYYY'));
+                fiveImg.addClass("img-fluid");
+                fiveImg.addClass("w-25");
+                fiveImg.attr("src", "https://openweathermap.org/img/wn/" + photoIcon + "@2x.png")
+
+                //Appending the above output to HTML under section id=display-forecast
+                fiveDay.append(fiveDate);
+                fiveDay.append(fiveImg);
+                fiveDay.append(fiveTemp);
+                fiveDay.append(fiveForeWind);
+                fiveDay.append(fiveHum);
+                forecastCardEl.append(fiveDay);
+
             }
-        });
-}          
+        })
+}
+
+
+            
     
 ///Saving to local storage// 
 $(".save").on("click", function(){
@@ -167,10 +202,10 @@ function loadPreviousCities(){
         let cityListEl = document.getElementById('city-1'); //set the inside of the button to be equal to the city name from the list
         button.textContent = localStorageArray[i];
 
-         buttons[i].addEventListener('click', function(){
-            let data = buttons[i].dataset;
+        //  buttons[i].addEventListener('click', function(){
+        //     let data = buttons[i].dataset;
             
-         } )     /// add the onclick to button
+        //  } )     /// add the onclick to button
         //append the new button created with the city name inside of it to the div container on our html page where I want it to show up 
         cityListEl.appendChild(button);
         console.log(localStorageArray[i]);
