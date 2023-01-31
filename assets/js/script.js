@@ -153,9 +153,23 @@ arrayOfCities.push(inputValue)
 localStorage.setItem("cities", JSON.stringify(arrayOfCities))
 });
 
+
 ///working on pulling cities from local storage
-let cityOneValue= localStorage.getItem("city-1")
+let cityOneValue= localStorage.getItem("cities")
 $("#city-1 button").val(cityOneValue)
+console.log(cityOneValue);
+
+let localStorageArray = JSON.parse(localStorage.getItem("cities"))
+for(let i = 5; i < localStorageArray.length; i++) {  ///loop through our array of cities in here
+  let button=document.createElement("button");   //create a button with javascript for the city
+                    //set the inside of the button to be equal to the city name from the list
+                    //append the new button created with the city name inside of it to the div container on our html page where I want it to show up 
+
+  console.log(localStorageArray[i]); 
+  
+
+  
+}
 
 
 
