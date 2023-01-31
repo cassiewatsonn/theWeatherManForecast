@@ -174,10 +174,7 @@ function forecastFunction() {
 
             }
         })
-}
-
-
-            
+}        
     
 ///Saving to local storage// 
 $(".save").on("click", function(){
