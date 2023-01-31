@@ -146,40 +146,62 @@ function forecastFunction() {
     
 ///Saving to local storage// 
 $(".save").on("click", function(){
-  //creating an array... to add inputValue in to save to local storage..
-let arrayOfCities = JSON.parse(localStorage.getItem("cities")) || []
-let inputValue = $(this).siblings("input").val();   // $(this) <== the button element clicked. // $(this).siblings('input')  <== the input element in html
-arrayOfCities.push(inputValue)
-localStorage.setItem("cities", JSON.stringify(arrayOfCities))
-});
+    //creating an array... to add inputValue in to save to local storage..
+    let arrayOfCities = JSON.parse(localStorage.getItem("cities")) || []
+    let inputValue = $(this).siblings("input").val();   // $(this) <== the button element clicked. // $(this).siblings('input')  <== the input element in html
+    arrayOfCities.push(inputValue)
+    localStorage.setItem("cities", JSON.stringify(arrayOfCities))
+    });
 
 
 ///working on pulling cities from local storage
+function loadPreviousCities(){ 
+    let cityOneValue= localStorage.getItem("cities") /// retrieve array from the local storage
+    console.log(cityOneValue);
+    let localStorageArray = JSON.parse(localStorage.getItem("cities"))
+    console.log("this localstorage", localStorageArray);
 
-let cityOneValue= localStorage.getItem("cities") /// retrieve array from the local storage
-let localStorageArray = JSON.parse(localStorage.getItem("cities"))
-
-cities = JSON.parse(cityOneValue); /// parse the arrray from the string
-
-$("#city-1 button").val(cityOneValue)
-console.log(cityOneValue);
-
-
-
-// cities = JSON.parse(cities); /// parse the arrray from the string
-
-for(let i = 5; i < localStorageArray.length; i++) {  ///loop through our array of cities in here
-  let button=document.createElement("button");   //create a button with javascript for the city
-   let recentCities = cities.slice(-5);   // get the 5 most recent cities   
-    document.getElementById("city-1").innerHTML = recentCities;                 //set the inside of the button to be equal to the city name from the list
-                    //append the new button created with the city name inside of it to the div container on our html page where I want it to show up 
-
-  console.log(localStorageArray[i]); 
-  
-  
+    for (let i = 0; i < localStorageArray.length; i++) { ///loop through our array of cities in here
+        let button = document.createElement("button"); //create a button with javascript for the city
+        //let recentCities = cities.slice(-5);   // get the 5 most recent cities   
+        let cityListEl = document.getElementById('city-1'); //set the inside of the button to be equal to the city name from the list
+        button.textContent = localStorageArray[i];
+        //append the new button created with the city name inside of it to the div container on our html page where I want it to show up 
+        cityListEl.appendChild(button);
+        console.log(localStorageArray[i]);
+    }
 }
+loadPreviousCities();
 
 
+
+
+
+
+
+
+
+
+
+
+
+//     cities = JSON.parse(cityOneValue); /// parse the arrray from the string
+
+//     $("#city-1 button").val(cityOneValue)
+//     console.log(cityOneValue);
+
+//     // cities = JSON.parse(cities); /// parse the arrray from the string
+
+//         for(let i = 5; i < localStorageArray.length; i++) {  ///loop through our array of cities in here
+//         let button=document.createElement("button");   //create a button with javascript for the city
+//         let recentCities = cities.slice(-5);   // get the 5 most recent cities   
+//             document.getElementById("city-1").innerHTML = recentCities;                 //set the inside of the button to be equal to the city name from the list
+//                             //append the new button created with the city name inside of it to the div container on our html page where I want it to show up 
+
+//         console.log(localStorageArray[i]); 
+//     }
+// }
+// loadPreviousCities(); 
 
 
 
