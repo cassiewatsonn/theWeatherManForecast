@@ -144,7 +144,6 @@ function forecastFunction() {
         });
 }          
     
-
 ///Saving to local storage// 
 $(".save").on("click", function(){
   //creating an array... to add inputValue in to save to local storage..
@@ -153,6 +152,16 @@ let inputValue = $(this).siblings("input").val();   // $(this) <== the button el
 arrayOfCities.push(inputValue)
 localStorage.setItem("cities", JSON.stringify(arrayOfCities))
 });
+
+///working on pulling cities from local storage
+let cityOneValue= localStorage.getItem("city-1")
+$("#city-1 button").val(cityOneValue)
+
+
+
+
+
+
 
 
 
