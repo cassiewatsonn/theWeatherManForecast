@@ -98,9 +98,7 @@ function currentWeather() {
             document.getElementById("humidity").innerHTML = "Humidity: " + humidity + "%";
 
             fiveDayForecast(); 
-        })
-};
-
+        })};
 
 function fiveDayForecast() {
     console.log(lat,lon);
@@ -112,9 +110,7 @@ function fiveDayForecast() {
         .then(function (response) {
             console.log(response);
             forecastFunction();
-        });
-    
-}
+        });}
 
 function forecastFunction() {
     let forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&limit=1&units=metric&appid=" + APIKey;
@@ -172,9 +168,7 @@ function forecastFunction() {
                 fiveDay.append(fiveHum);
                 forecastCardEl.append(fiveDay);
 
-            }
-        })
-}        
+            }})}        
     
 ///Saving to local storage// 
 $(".save").on("click", function(){
@@ -185,8 +179,7 @@ $(".save").on("click", function(){
     localStorage.setItem("cities", JSON.stringify(arrayOfCities))
     });
 
-
-///working on pulling cities from local storage
+///Pulling cities from local storage
 function loadPreviousCities(){ 
     let cityOneValue= localStorage.getItem("cities") /// retrieve array from the local storage
     console.log(cityOneValue);
@@ -206,111 +199,5 @@ function loadPreviousCities(){
         //append the new button created with the city name inside of it to the div container on our html page where I want it to show up 
         cityListEl.appendChild(button);
         console.log(localStorageArray[i]);
-    }
-}
+    }}
 loadPreviousCities();
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     cities = JSON.parse(cityOneValue); /// parse the arrray from the string
-
-//     $("#city-1 button").val(cityOneValue)
-//     console.log(cityOneValue);
-
-//     // cities = JSON.parse(cities); /// parse the arrray from the string
-
-//         for(let i = 5; i < localStorageArray.length; i++) {  ///loop through our array of cities in here
-//         let button=document.createElement("button");   //create a button with javascript for the city
-//         let recentCities = cities.slice(-5);   // get the 5 most recent cities   
-//             document.getElementById("city-1").innerHTML = recentCities;                 //set the inside of the button to be equal to the city name from the list
-//                             //append the new button created with the city name inside of it to the div container on our html page where I want it to show up 
-
-//         console.log(localStorageArray[i]); 
-//     }
-// }
-// loadPreviousCities(); 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Get the 5 day forecast information from Open Weather Map
-// const fiveDayForecastRequest = new Request('api.openweathermap.org/data/2.5/forecast?q=CITY_NAME&appid=' + APIKey);
-// fetch(fiveDayForecastRequest)
-//   .then(response => response.json())
-//   .then(data => {
-//     // Save the 5 day forecast information
-//     const fiveDayForecast = data;
-//   });
-
-// // Display the 5 day forecast
-// for (let i = 0; i < fiveDayForecast.cnt; i++) {
-//   console.log('Day ' + (i + 1) + ':');
-//   console.log('Description: ' + fiveDayForecast.list[i].weather[0].description);
-//   console.log('Temperature: ' + fiveDayForecast.list[i].main.temp);
-// }
-
-
-
-//   let fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + newCity.lat + "&lon=" + newCity.lon + "&appid=" + APIKey + "&units=metric";
-
-//   console.log(fiveDayURL);
-  
-//   fetch(fiveDayURL) 
-//     .then(function (response){
-//       return response.json();
-//     }) 
-//     .then(function (fiveday){
-//       console.log(fiveday);
-//     });
-
-
-//     if(response.ok){
-//         response.json().then(function (displayWeather){
-//             console.log(displayWeather); 
-//         })
-//     }
-//     return response.json();
-// })
-
-
-
-
-// // Add city to search history in Local Storage
-// let searchHistory = localStorage.getItem('searchHistory');
-// if (searchHistory == null) {
-//     let cities = [];
-//     cities.push(city);
-//     localStorage.setItem('searchHistory', JSON.stringify(cities));
-// } else {
-//     let cities = JSON.parse(searchHistory);
-//     cities.push(city);
-//     localStorage.setItem('searchHistory', JSON.stringify(cities));
-// }
-
-
-
