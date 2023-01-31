@@ -176,7 +176,6 @@ for(let i = 5; i < localStorageArray.length; i++) {  ///loop through our array o
 
   console.log(localStorageArray[i]); 
   
-
   
 }
 
