@@ -191,7 +191,7 @@ function loadPreviousCities(){
     let cityOneValue= localStorage.getItem("cities") /// retrieve array from the local storage
     console.log(cityOneValue);
     let localStorageArray = JSON.parse(localStorage.getItem("cities"))
-    console.log("this localstorage", localStorageArray);
+    console.log("my city localstorage", localStorageArray);
 
     for (let i = 0; i < localStorageArray.length; i++) { ///loop through our array of cities in here
         let button = document.createElement("button"); //create a button with javascript for the city
