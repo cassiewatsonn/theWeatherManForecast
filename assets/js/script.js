@@ -166,6 +166,11 @@ function loadPreviousCities(){
         //let recentCities = cities.slice(-5);   // get the 5 most recent cities   
         let cityListEl = document.getElementById('city-1'); //set the inside of the button to be equal to the city name from the list
         button.textContent = localStorageArray[i];
+
+         buttons[i].addEventListener('click', function(){
+            let data = buttons[i].dataset;
+            
+         } )     /// add the onclick to button
         //append the new button created with the city name inside of it to the div container on our html page where I want it to show up 
         cityListEl.appendChild(button);
         console.log(localStorageArray[i]);
