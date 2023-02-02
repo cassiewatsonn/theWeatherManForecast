@@ -41,10 +41,10 @@ $("#city-Search").on("submit", function (event) {
     }
 });
 
-function currentWeather() {
+function currentWeather(city) {
 
-    var inputBox = document.getElementById("city-input");
-    var city = inputBox.value; 
+    // var inputBox = document.getElementById("city-input");
+    // var city = inputBox.value; 
 
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&limit=1&units=metric&appid=" + APIKey; 
     
@@ -121,7 +121,8 @@ function forecastFunction() {
         })
         /// go through list of responses in the array
         .then(function (response) {
-            console.log('line 122')
+            console.log('line 122=============================')
+            forecastCardEl.innerHTML = '';
             for (var i = 0; i < response.list.length; i += 8) {
                 console.log(response.list[i].dt_txt);
 
@@ -185,8 +186,13 @@ function loadPreviousCities(){
     console.log(cityOneValue);
     let localStorageArray = JSON.parse(localStorage.getItem("cities"))
     console.log("my city localstorage", localStorageArray);
-
-    for (let i = 0; i < localStorageArray.length; i++) { ///loop through our array of cities in here
+    let length = 0;
+    if(localStorageArray.length < 5){
+        length = localStorageArray.length;
+    }else{
+        length = 5
+    }
+    for (let i = 0; i < length; i++) { ///loop through our array of cities in here
         let button = document.createElement("button"); //create a button with javascript for the city
         //let recentCities = cities.slice(-5);   // get the 5 most recent cities   
         let cityListEl = document.getElementById('city-1'); //set the inside of the button to be equal to the city name from the list
@@ -201,3 +207,10 @@ function loadPreviousCities(){
         console.log(localStorageArray[i]);
     }}
 loadPreviousCities();
+
+document.getElementById("city-1").addEventListener("click", function(event){
+    if(event.target.matches('button')){
+        let cityName= event.target.textContent
+        currentWeather(cityName);
+    }
+})
